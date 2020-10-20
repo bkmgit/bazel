@@ -110,7 +110,7 @@ public abstract class JavaHelper {
       JavaSemantics semantics, RuleContext ruleContext, Artifact resource) {
     boolean siblingRepositoryLayout = ruleContext.getConfiguration().isSiblingRepositoryLayout();
     PathFragment resourcePath = resource.getOutputDirRelativePath(siblingRepositoryLayout);
-    PathFragment repoExecPath = ruleContext.getRepository().getExecPath(siblingRepositoryLayout);
+    PathFragment repoExecPath = ruleContext.getLabel().getPackageIdentifier().getRepository().getExecPath(siblingRepositoryLayout);
     if (!repoExecPath.isEmpty() && resourcePath.startsWith(repoExecPath)) {
       resourcePath = resourcePath.relativeTo(repoExecPath);
     }
